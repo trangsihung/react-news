@@ -1,14 +1,122 @@
-body {
+* {
   margin: 0;
   padding: 0;
+}
+body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 15px;
+  background-color: #ddd;
+  font-weight: 300;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.wrapper {
+  max-width: 960px;
+  margin: 0 auto;
+  width: 100%;
+  padding-bottom: 90px;
+}
+
+.header {
+  background-color: #2F4858;
+  padding: 20px 30px;
+  margin-bottom: 30px;
+}
+
+.site-title {
+  color: #fff;
+  line-height: 24px;
+  transition: color .15s ease;
+  font-weight: 300;
+   max-width: 960px;
+   max-width: 960px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.item {
+  background-color: #fff;
+  padding: 20px 30px;
+  border-bottom: 1px solid #eee;
+  position: relative;
+  line-height: 20px;
+}
+
+.item:nth-child(even) {
+  background-color: #f7f7f7;
+}
+
+.item .item-name {
+  font-weight: normal;
+  line-height: 1.4em;
+}
+
+.item .item-name a {
+  color: #33658A;
+  font-size: 1em;
+  text-decoration: none;
+}
+
+.item .summary {
+  margin: 20px 0;
+}
+
+.item .summary p {
+  font-size: 1em;
+  line-height: 1.3em;
+}
+
+.item .meta p {
+  font-size: 0.8em;
+  display: inline-block;
+  color: #999;
+  font-style: italic;
+}
+
+.item .meta p span {
+  color: #333;
+  font-weight: normal;
+}
+
+.pagination {
+  margin-top: 30px;
+}
+
+.pagination ul {
+  list-style: none;
+}
+
+.pagination ul li {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.pagination ul li.active {
+  font-weight: bold;
+}
+
+.pagination ul li.active a {
+  pointer-events: none
+}
+
+.pagination ul li a {
+  display: block;
+  width: 40px; height: 40px;
+  text-decoration: none;
+  text-align: center; line-height: 40px;
+  color: #222;
+  background-color: #fff;
+  transition: background-color .4s;
+}
+
+.pagination ul li:not(.active) a:hover {
+  background-color: #ddd;
 }
