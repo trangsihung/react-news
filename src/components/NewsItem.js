@@ -1,24 +1,38 @@
 import React, { Component } from 'react'
 
 export default class NewsItem extends Component {
-  render() {
-    return (
-      <div className="item">
-          <h2 className="item-name">
-              <a target="_blank" href="#">Lightning Talk Kì 29 – Những môn học quan trọng trong ngành lập trình</a>
-          </h2>
 
-          <div className="summary">
-              <p>Kì này, mình chia sẻ về những môn học quan trọng trong ngành lập trình nha. Các bạn mới vào học hoặc tự học thì tham
-              khảo nhé :D. &#160; Những môn cực kì quan trọng Nhập môn lập trình Lập trình hướng đối tượng Cơ sở dữ liệu Những môn
-                      dùng nhiều trong công...</p>
-          </div>
+    backgroundImage(img) {
+        return {
+            backgroundImage: `url(${img})`
+        }
+    }
 
-          <div className="meta">
-              <p className="date">Đăng ngày: <span>20/12/2018</span></p>
-              <p className="soucre">tại <span>(toidicodedao.com)</span></p>
-          </div>
-      </div>
-    )
-  }
+    render() {
+        const item = this.props.article;
+        return (
+            <div className="item" id={this.props.key}>
+                <div className="image" style={this.backgroundImage(item.urlToImage)}>
+                    <a rel="noopener noreferrer" target="_blank" href={item.url}>
+                        <span className="sr-only">{item.title}</span>
+                    </a>
+                </div>
+                <div className="info">
+                    <h2 className="item-name">
+                        <a rel="noopener noreferrer" target="_blank" href={item.url}>{item.title}</a>
+                    </h2>
+
+                    <div className="summary">
+                        <p>{item.description}</p>
+                    </div>
+
+                    <div className="meta">
+                        <p className="date">At: <span>{item.publishedAt}</span></p>
+                        <p className="soucre"> on <span>({item.source.name})</span></p>
+                    </div>
+                </div>
+                <div className="cb"></div>
+            </div>
+        )
+    }
 }

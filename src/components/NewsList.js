@@ -6,11 +6,7 @@ export default class NewsList extends Component {
     return (
       <div>
             <div className="news-list">
-                <NewsItem />
-                <NewsItem />
-                <NewsItem />
-                <NewsItem />
-                <NewsItem />
+                {this.props.items.map(item => <NewsItem key={'_' + Math.random().toString(36).substr(2, 9)} article={item} />)}
             </div>
       </div>
     )
