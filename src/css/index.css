@@ -109,7 +109,8 @@ code {
 
 .pagination ul li a {
   display: block;
-  width: 40px; height: 40px;
+  width: auto; height: 40px;
+  padding: 0 20px;
   text-decoration: none;
   text-align: center; line-height: 40px;
   color: #222;
@@ -118,7 +119,7 @@ code {
 }
 
 .pagination ul li:not(.active) a:hover {
-  background-color: #ddd;
+  background-color: #eee;
 }
 
 .cb { clear: both }
@@ -150,3 +151,14 @@ code {
     width: calc(100% - 200px);
     float: right;
 }
+
+.loading {
+    display: none;
+    padding: 30px 0;
+    text-align: center;
+}
+
+.loading.active { display: block; }
+
+.hide { display: none !important}
+.show { display: inline-block !important}

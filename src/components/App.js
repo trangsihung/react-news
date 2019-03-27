@@ -1,41 +1,50 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Header from './Header';
+import Loading from './Loading';
 import NewsList from './NewsList';
 import NewsPagination from './NewsPagination';
 
 class App extends Component {
+
     state = {
         isLoading: true,
         news: [],
         error: null,
-        pagination: {
-            current: 1,
-            size: 5,
-            totalPages: null,
-            totalResults: null,
-        }
+        page: 1,
+        totalPages: null,
+        totalResults: null
     }
 
     fetchNews(page) {
         // Where we're fetching data from
-        axios.get(`https://newsapi.org/v2/top-headlines?country=us&page=${page}&pageSize=${this.state.pagination.size}&apiKey=87b27a3e27ce44d3852e3878f1da28ae`)
+        axios.get(`https://newsapi.org/v2/top-headlines?country=us&page=${page}&pageSize=5&apiKey=87b27a3e27ce44d3852e3878f1da28ae`)
             .then(data =>
                 this.setState({
-                    news: data.data.articles,
                     isLoading: false,
-                    pagination: {
-                        totalPages: Math.ceil( data.data.totalResults / this.state.pagination.size ),
-                        totalResults: data.data.totalResults
-                    }
+                    news: data.data.articles,
+                    totalPages: Math.ceil( data.data.totalResults / 5 ),
+                    totalResults: data.data.totalResults
                 })
             )
             // Catch any errors we hit and update the app
-            .catch(error => this.setState({ error, isLoading: false }));
+            .catch(error => this.setState({ error }));
     }
 
     componentDidMount() {
         this.fetchNews(1);
+    }
+
+    componentWillUpdate() {
+        window.scrollTo(0, 0);
+    }
+
+    goPage = (dir) => {
+        let _page = this.state.page + dir;
+        if ( _page < 1 ) _page = 1;
+        if ( _page >= this.state.totalPages ) _page = this.state.totalPages;
+        this.setState({ page: _page, isLoading: true });
+        this.fetchNews(_page);
     }
 
     render() {
@@ -43,9 +52,12 @@ class App extends Component {
             <div className="App">
                 <Header title="News API: Top Headlines"/>
                 <div className="wrapper">
-                    <NewsList items={this.state.news}/>
-                    <div className="cb"></div>
-                    <NewsPagination pagination={this.pagination}/>
+                    <Loading isLoading={this.state.isLoading}/>
+                    <div className={this.state.isLoading ? 'hide' : 'show'}>
+                        <NewsList items={this.state.news} />
+                        <div className="cb"></div>
+                        <NewsPagination current={this.state.page} total={this.state.totalPages} goPage={this.goPage} />
+                    </div>
                 </div>
             </div>
         );

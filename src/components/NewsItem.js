@@ -11,7 +11,7 @@ export default class NewsItem extends Component {
     render() {
         const item = this.props.article;
         return (
-            <div className="item" id={this.props.key}>
+            <div className="item">
                 <div className="image" style={this.backgroundImage(item.urlToImage)}>
                     <a rel="noopener noreferrer" target="_blank" href={item.url}>
                         <span className="sr-only">{item.title}</span>
