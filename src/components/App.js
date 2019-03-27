@@ -6,6 +6,9 @@ import NewsList from './NewsList';
 import NewsPagination from './NewsPagination';
 
 class App extends Component {
+    api = {
+        key: '87b27a3e27ce44d3852e3878f1da28ae'
+    }
 
     state = {
         isLoading: true,
@@ -18,7 +21,7 @@ class App extends Component {
 
     fetchNews(page) {
         // Where we're fetching data from
-        axios.get(`https://newsapi.org/v2/top-headlines?country=us&page=${page}&pageSize=5&apiKey=87b27a3e27ce44d3852e3878f1da28ae`)
+        axios.get(`https://newsapi.org/v2/top-headlines?country=us&page=${page}&pageSize=5&apiKey=${this.api.key}`)
             .then(data =>
                 this.setState({
                     isLoading: false,
