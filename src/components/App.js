@@ -34,12 +34,21 @@ class App extends Component {
             .catch(error => this.setState({ error }));
     }
 
+    componentWillMount() {
+        console.log('componentWillMount');
+    }
+
     componentDidMount() {
+        console.log('componentDidMount');
         this.fetchNews(1);
     }
 
     componentWillUpdate() {
         window.scrollTo(0, 0);
+    }
+
+    componentDidUpdate() {
+        console.log('componentDidUpdate');
     }
 
     goPage = (dir) => {
@@ -51,6 +60,7 @@ class App extends Component {
     }
 
     render() {
+        console.log('render');
         return (
             <div className="App">
                 <Header title="News API: Top Headlines"/>

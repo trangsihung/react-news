@@ -1,6 +1,7 @@
 {
   "name": "reactjs-news",
   "version": "0.1.0",
+  "description": "Demo ReeatJS: Load data from api",
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
